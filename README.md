@@ -26,6 +26,7 @@ npm i @hunlongyu/electron-icon-builder
     "icon": "eib  -i relative/path/file.png -o relative/path/folder"
 }
 
+npm run icon
 ```
 
 # Flags
