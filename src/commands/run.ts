@@ -23,10 +23,8 @@ export default class Run extends Command {
     try {
       const {flags} = await this.parse(Run)
       const input = path.resolve(process.cwd(), flags.input)
-
       const output = path.resolve(process.cwd(), flags.output)
       const flatten = flags.flatten
-      // const dir = path.join(output, 'build')
       const win = flatten ? output : path.join(output, 'win')
       const mac = flatten ? output : path.join(output, 'mac')
       const png = flatten ? output : path.join(output, 'png')
@@ -69,7 +67,7 @@ export default class Run extends Command {
       const base64 = fs.readFileSync(input, {encoding: 'base64'})
       const data = base64.replace(/^data:image\/(png|jpg);base64,/, '')
       const img = photon.PhotonImage.new_from_base64(data)
-      const size = [32, 64, 128, 256, 512]
+      const size = [16, 32, 48, 64, 128, 256, 512]
       for (const i of size) {
         const res = photon.resize(img, i, i, 5)
         const outputBase64 = res.get_base64()

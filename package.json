@@ -1,8 +1,8 @@
 {
-  "name": "@hunlongyu/eib",
-  "version": "0.0.0",
-  "description": "electron icon builder",
-  "author": "hunlongyu @Hunlongyu",
+  "name": "@hunlongyu/electron-icon-builder",
+  "version": "0.1.2",
+  "description": "An icon generator to generate all the icon files needed for electron packaging",
+  "author": "Hunlongyu",
   "bin": {
     "eib": "./bin/run"
   },
@@ -10,6 +10,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "repository": "Hunlongyu/eib",
+  "private": false,
   "files": [
     "/bin",
     "/dist",
@@ -17,9 +18,9 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@oclif/core": "^1",
+    "@oclif/core": "^1.9.5",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.0.1",
+    "@oclif/plugin-plugins": "^2.1.0",
     "@silvia-odwyer/photon-node": "^0.3.1",
     "icon-gen": "^3.0.1"
   },
@@ -62,11 +63,13 @@
     "version": "oclif readme && git add README.md"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   },
   "bugs": "https://github.com/Hunlongyu/eib/issues",
   "keywords": [
-    "oclif"
+    "electron-icon",
+    "icon-builder",
+    "electron-icon-builder"
   ],
   "types": "dist/index.d.ts"
 }

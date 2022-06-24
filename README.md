@@ -9,7 +9,7 @@ electron-icon-builder
 
 # Global Usage
 ```sh-session
-npm i -g @hunlongyu/eib
+npm i -g @hunlongyu/electron-icon-builder
 ```
 
 ```
@@ -34,7 +34,9 @@ Input file should be 1024px x 1024px or larger. Make sure it is a 1 to 1 aspect 
         -[mac]
             - icon.icns
         -[png]
+            - 16x16.png
             - 32x32.png
+            - 18x18.png
             - 64x64.png
             - 128x128.png
             - 512x512.png
@@ -47,7 +49,9 @@ When flatten option is enabled
     -[build]
         - icon.icns
         - icon.ico
+        - 16x16.png
         - 32x32.png
+        - 48x48.png
         - 64x64.png
         - 128x128.png
         - 512x512.png
