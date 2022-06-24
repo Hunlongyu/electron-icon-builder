@@ -12,9 +12,22 @@ electron-icon-builder
 npm i -g @hunlongyu/electron-icon-builder
 ```
 
-```
+```bash
 eib -i relative/path/file.png -o relative/path/folder
 ```
+
+# Local Usage
+```bash
+npm i @hunlongyu/electron-icon-builder
+
+// package
+
+"scripts": {
+    "icon": "eib  -i relative/path/file.png -o relative/path/folder"
+}
+
+```
+
 # Flags
 ```
 --input,    -i [String]   [Default: './icon.png'] Path to PNG file, 
