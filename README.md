@@ -14,24 +14,25 @@ electron-icon-builder
 <p>
 
 # Global Usage
-```sh-session
-npm i -g @hunlongyu/electron-icon-builder
-```
-
 ```bash
+// install
+npm i -g @hunlongyu/electron-icon-builder
+
+// usage
 eib -i relative/path/file.png -o relative/path/folder
 ```
 
 # Local Usage
 ```bash
-npm i @hunlongyu/electron-icon-builder
+// install
+npm i -D @hunlongyu/electron-icon-builder
 
-// package
-
+// add a srcipt in package.json file
 "scripts": {
     "icon": "eib  -i relative/path/file.png -o relative/path/folder"
 }
 
+// usage
 npm run icon
 ```
 
