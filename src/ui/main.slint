@@ -23,7 +23,7 @@ Main := Window {
         text <=> inputPath;
       }
       inputBtn := Button {
-        text: "input";
+        text: "Input";
         clicked => { handleInput(); }
       }
     }
@@ -34,22 +34,22 @@ Main := Window {
         text <=> outputPath;
       }
       outputBtn := Button {
-        text: "output";
+        text: "Output";
         clicked => { handleOutput(); }
       }
     }
     HorizontalBox {
       flag := CheckBox {
-        checked: flatten;
-        text: "flatten";
+        checked <=> flatten;
+        text: "Flatten";
       }
       reset := Button {
         height: 32px;
-        text: "reset";
+        text: "Reset";
         clicked => { handleReset(); }
       }
       confirm := Button {
-        text: "confirm";
+        text: "Confirm";
         clicked => { handleConfirm(input.text, output.text, flatten); }
       }
     }

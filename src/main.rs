@@ -1,5 +1,7 @@
+#![windows_subsystem = "windows"]
+
 use slint::SharedString;
-use native_dialog::{FileDialog};
+use native_dialog::FileDialog;
 
 slint::include_modules!();
 
