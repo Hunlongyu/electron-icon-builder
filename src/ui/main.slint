@@ -1,0 +1,57 @@
+import { VerticalBox, HorizontalBox, LineEdit, Button, CheckBox } from "std-widgets.slint";
+
+Main := Window {
+  preferred-width: 380px;
+  preferred-height: 220px;
+  title: "Electron icon builder";
+  icon: @image-url("./logo.png");
+
+  property <string> inputPath: "";
+  property <string> outputPath: "";
+  property <bool> flatten: false;
+
+  callback handleInput;
+  callback handleOutput;
+  callback handleConfirm(string, string, bool);
+  callback handleReset;
+
+  VerticalBox {
+    HorizontalBox {
+      input := LineEdit {
+        height: 32px;
+        placeholder-text: "./icon.png";
+        text <=> inputPath;
+      }
+      inputBtn := Button {
+        text: "input";
+        clicked => { handleInput(); }
+      }
+    }
+    HorizontalBox {
+      output := LineEdit {
+        height: 32px;
+        placeholder-text: "./build/";
+        text <=> outputPath;
+      }
+      outputBtn := Button {
+        text: "output";
+        clicked => { handleOutput(); }
+      }
+    }
+    HorizontalBox {
+      flag := CheckBox {
+        checked: flatten;
+        text: "flatten";
+      }
+      reset := Button {
+        height: 32px;
+        text: "reset";
+        clicked => { handleReset(); }
+      }
+      confirm := Button {
+        text: "confirm";
+        clicked => { handleConfirm(input.text, output.text, flatten); }
+      }
+    }
+  }
+}
