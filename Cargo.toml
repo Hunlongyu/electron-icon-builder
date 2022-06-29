@@ -1,5 +1,5 @@
 [package]
-name = "gui"
+name = "electron-icon-builder"
 version = "0.1.0"
 build = "./src/build.rs"
 edition = "2021"
@@ -13,3 +13,9 @@ slint-build = "0.2.4"
 
 [build-dependencies]
 slint-build = "0.2.4"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1.12"
+
+[package.metadata.winres]
+LegalCopyright = "Copyright © 2022 Hunlongyu"
