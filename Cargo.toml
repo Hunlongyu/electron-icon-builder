@@ -7,9 +7,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+fast_image_resize = "0.9.6"
+icns = "0.3.1"
+image = "0.24.2"
 native-dialog = "0.6.3"
 slint = "0.2.4"
-slint-build = "0.2.4"
 
 [build-dependencies]
 slint-build = "0.2.4"
