@@ -20,19 +20,27 @@ pub mod utils {
     let target_path;
     if output == "" {
       if is_flatten {
-        create_dir(current_dir.join("build")).unwrap();
+        if !current_dir.join("build").exists() {
+          create_dir(current_dir.join("build")).unwrap();
+        };
         target_path = current_dir.join("icon.ico");
       } else {
-        create_dir_all(current_dir.join("build").join("win")).unwrap();
+        if !current_dir.join("build").join("win").exists() {
+          create_dir_all(current_dir.join("build").join("win")).unwrap();
+        };
         target_path = current_dir.join("build").join("win").join("icon.ico");
       };
     } else {
       let output_path = PathBuf::from(output.as_str());
       if is_flatten {
-        create_dir(output_path.join("build")).unwrap();
-        target_path = output_path.join("icon.ico");
+        if !output_path.join("build").exists() {
+          create_dir(output_path.join("build")).unwrap();
+        };
+        target_path = output_path.join("build").join("icon.ico");
       } else {
-        create_dir_all(output_path.join("build").join("win")).unwrap();
+        if !output_path.join("build").join("win").exists() {
+          create_dir_all(output_path.join("build").join("win")).unwrap();
+        };
         target_path = output_path.join("build").join("win").join("icon.ico")
       };
     };
