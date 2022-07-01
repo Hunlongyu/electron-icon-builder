@@ -13,6 +13,13 @@ image = "0.24.2"
 native-dialog = "0.6.3"
 slint = "0.2.4"
 
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1
+incremental = false
+opt-level = "z"
+
 [build-dependencies]
 slint-build = "0.2.4"
 
