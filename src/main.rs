@@ -1,10 +1,10 @@
 // #![windows_subsystem = "windows"]
+mod utils;
 
-use std::{fs::File, env, path::Path, io::BufReader};
-use icns::{IconFamily, Image};
-use image::io;
 use slint::SharedString;
 use native_dialog::FileDialog;
+
+use crate::utils::utils::{ winico };
 
 slint::include_modules!();
 
@@ -54,16 +54,8 @@ fn main() {
 
     {
         main.on_handleConfirm(move |input: SharedString, output: SharedString, flag: bool| {
-            println!("handle confirm{} {} {}", input, output, flag);
-            let current_path = env::current_dir().unwrap();
-            let default_png_path = current_path.join("icon.png");
-            let mut png_path = Path::new("");
-            if input == "" {
-                png_path = &default_png_path;
-            } else {
-                png_path = &input;
-            };
-            println!("png path: {:?}", png_path);
+            println!("handle confirm: {} {} {}", input, output, flag);
+            winico(input, output, flag);
         });
     }
 
