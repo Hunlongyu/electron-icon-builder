@@ -48,7 +48,7 @@ pub mod utils {
     return target_path;
   }
 
-  pub async fn winico(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
+  pub fn winico(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
     let target_path;
     if is_flatten {
       target_path = output.join("icon.ico");
@@ -61,7 +61,7 @@ pub mod utils {
     resized.save(target_path).unwrap();
   }
 
-  pub async fn linuxpng(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
+  pub fn linuxpng(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
     let sizes: Vec<u32> = vec![16, 32, 48, 64, 128, 512];
     let png_file = image::open(input).unwrap().to_rgba8();
     let target_path;
@@ -79,7 +79,7 @@ pub mod utils {
     };
   }
 
-  pub async fn macicns(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
+  pub fn macicns(input: &PathBuf, output: &PathBuf, is_flatten: bool) {
     let target_path;
     if is_flatten {
       target_path = output.join("icon.icns");
