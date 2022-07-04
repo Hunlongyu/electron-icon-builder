@@ -1,6 +1,7 @@
 #![windows_subsystem = "windows"]
 use slint::SharedString;
 use native_dialog::FileDialog;
+use std::time::Instant;
 
 mod utils;
 use crate::utils::utils::{ check_input, check_output, winico, linuxpng, macicns };
@@ -65,10 +66,13 @@ fn main() {
                 },
             };
             let target = check_output(output);
+            let now = Instant::now();
             winico(&source, &target, flag);
             macicns(&source, &target, flag);
             linuxpng(&source, &target, flag);
-            let success = SharedString::from("Done!");
+            let end = Instant::now();
+            let time = format!("Done! It takes {:?}", end - now);
+            let success = SharedString::from(time);
             mainw.set_popupText(success);
             mainw.invoke_show_popup();
         });
