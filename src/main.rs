@@ -1,10 +1,9 @@
 // #![windows_subsystem = "windows"]
-mod utils;
-
 use slint::SharedString;
 use native_dialog::FileDialog;
 
-use crate::utils::utils::{ winico };
+mod utils;
+use crate::utils::utils::{ check_input, check_output, winico, linuxpng, macicns };
 
 slint::include_modules!();
 
@@ -53,9 +52,22 @@ fn main() {
 
 
     {
+        let main_weak = main.as_weak();
         main.on_handleConfirm(move |input: SharedString, output: SharedString, flag: bool| {
-            println!("handle confirm: {} {} {}", input, output, flag);
-            winico(input, output, flag);
+            let mainw = main_weak.unwrap();
+            let source = match check_input(input) {
+                Ok(path) => path,
+                Err(_) => {
+                    let str = SharedString::from("PNG file not found, please check and try again");
+                    mainw.set_popupText(str);
+                    mainw.invoke_show_popup();
+                    return;
+                },
+            };
+            let target = check_output(output);
+            winico(&source, &target, flag);
+            macicns(&source, &target, flag);
+            linuxpng(&source, &target, flag);
         });
     }
 

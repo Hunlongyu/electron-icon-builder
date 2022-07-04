@@ -1,4 +1,4 @@
-import { VerticalBox, HorizontalBox, LineEdit, Button, CheckBox } from "std-widgets.slint";
+import { VerticalBox, HorizontalBox, LineEdit, Button, CheckBox, StandardButton } from "std-widgets.slint";
 
 Main := Window {
   preferred-width: 380px;
@@ -9,11 +9,35 @@ Main := Window {
   property <string> inputPath: "";
   property <string> outputPath: "";
   property <bool> flatten: false;
+  property <string> popupText: "";
 
   callback handleInput;
   callback handleOutput;
   callback handleConfirm(string, string, bool);
   callback handleReset;
+
+  callback show_popup;
+  show_popup => { popup.show(); }
+  popup := PopupWindow {
+    width: 300px;
+    x: 40px;
+    y: 40px;
+    Rectangle {
+      background: root.background;
+      border-width: 1px;
+      border-color: #000000;
+    }
+    popup_layout := Dialog {
+      height: 100%;
+      width: 100%;
+      popup_text := Text {
+        text <=> popupText;
+        wrap: word-wrap;
+        color: red;
+      }
+      StandardButton { kind: yes; }
+    }
+  }
 
   VerticalBox {
     HorizontalBox {
