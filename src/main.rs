@@ -68,6 +68,9 @@ fn main() {
             winico(&source, &target, flag);
             macicns(&source, &target, flag);
             linuxpng(&source, &target, flag);
+            let success = SharedString::from("Done!");
+            mainw.set_popupText(success);
+            mainw.invoke_show_popup();
         });
     }
 
