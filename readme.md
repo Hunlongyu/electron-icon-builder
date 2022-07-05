@@ -1,13 +1,15 @@
-## Electron icon build
+## Electron icon builder GUI
+
+<p align="center">
+	<img src="https://forthebadge.com/images/badges/built-with-love.svg">
+<p>
 
 
-### RUST BUILD 
-以下配置，可以减少二进制文件包的大小
-```toml
-[profile.release]
-panic = "abort"
-lto = true
-codegen-units = 1
-incremental = false
-opt-level = "z"
-```
+### Feature
+* Small: 3MB
+* Fast: 400ms
+
+### ScreenShot
+![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png)
+
+
