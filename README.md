@@ -1,5 +1,4 @@
-electron-icon-builder
-=================
+# electron-icon-builder
 
 <p align="center">
 	<img src="https://forthebadge.com/images/badges/built-with-love.svg">
@@ -77,3 +76,16 @@ When flatten option is enabled
         - 128x128.png
         - 512x512.png
 ```
+
+# Electron-icon-builder GUI
+![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png)
+
+### Feature
+* Small: 3MB
+* Fast: 400ms
+* Cross-Platform
+* Widthout installation
+
+Download: [release](https://github.com/Hunlongyu/eib/releases)
+
+Git: [Branch](https://github.com/Hunlongyu/eib/tree/rust)

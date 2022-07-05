@@ -11,6 +11,8 @@
 /tmp
 /tmp
 /yarn.lock
+/target
+/build
 node_modules
 node_modules
 oclif.manifest.json
