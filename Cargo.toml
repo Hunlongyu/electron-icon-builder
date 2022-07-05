@@ -1,6 +1,6 @@
 [package]
 name = "electron-icon-builder"
-version = "0.1.5"
+version = "0.1.6"
 build = "./src/build.rs"
 edition = "2021"
 
