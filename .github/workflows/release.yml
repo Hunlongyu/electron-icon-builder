@@ -7,44 +7,80 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  publish:
-    name: Publish for ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        name: [
-            linux,
-            windows,
-            macos
-        ]
-
-        include:
-          - name: linux
-            os: ubuntu-latest
-            artifact_name: target/release/electron-icon-builder
-            asset_name: electron-icon-builder-linux
-          - name: windows
-            os: windows-latest
-            artifact_name: target/release/electron-icon-builder.exe
-            asset_name: electron-icon-builder-windows
-          - name: macos
-            os: macos-latest
-            artifact_name: target/release/electron-icon-builder
-            asset_name: electron-icon-builder-macos
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    - uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
+      - name: Install latest rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+          override: true
 
-    - name: Build
-      run: cargo build --release --locked
+      - name: Build
+        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/PROJECT_NAME_amd64
 
-    - name: Upload binaries to release
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.asset_name }}
-        path: ${{ matrix.artifact_name }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            target/release/PROJECT_NAME_amd64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-win:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install latest rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+          override: true
+
+      - name: Build
+        run: cargo build --all --release
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: target/release/electron-icon-builder.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install latest rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: x86_64-apple-darwin
+          default: true
+          override: true
+
+      - name: Build for mac
+        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/PROJECT_NAME_darwin
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            target/release/PROJECT_NAME_darwin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
