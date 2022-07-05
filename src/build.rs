@@ -8,3 +8,13 @@ fn main() {
   res.compile().unwrap();
   slint_build::compile("src/ui/main.slint").unwrap();
 }
+
+#[cfg(unix)]
+fn main() {
+  slint_build::compile("src/ui/main.slint").unwrap();
+}
+
+#[cfg(macos)]
+fn main() {
+  slint_build::compile("src/ui/main.slint").unwrap();
+}
