@@ -23,9 +23,15 @@ jobs:
       - name: Build
         run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_amd64
 
+      - name: Create release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
           files: |
             target/release/electron-icon-builder_amd64
         env:
@@ -48,9 +54,15 @@ jobs:
       - name: Build
         run: cargo build --release
 
+      - name: Create release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
           files: target/release/electron-icon-builder.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -73,9 +85,15 @@ jobs:
       - name: Build for mac
         run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_darwin
 
+      - name: Create release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
           files: |
             target/release/electron-icon-builder_darwin
         env:
