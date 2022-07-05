@@ -1,100 +1,33 @@
 name: release-build
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
     branches: [rust]
+    tags:
+      - v[0-9]+.*
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
+  build-win-mac:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+      name: ${{ matrix.os }}
+      runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Install latest rust toolchain
-        uses: actions-rs/toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: taiki-e/create-gh-release-action@v1
         with:
-          toolchain: stable
-          default: true
-          override: true
-
-      - name: Build
-        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_amd64
-
-      - name: Create release tag
-        id: tag
-        run: |
-          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
-          files: |
-            target/release/electron-icon-builder_amd64
+          # (Optional) Path to changelog.
+          # changelog: CHANGELOG.md
+          # (Optional) Create a draft release.
+          # [default value: false]
+          draft: true
+          title: $version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build-win:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Install latest rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          default: true
-          override: true
-
-      - name: Build
-        run: cargo build --release
-
-      - name: Create release tag
-        id: tag
-        run: |
-          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
-          files: target/release/electron-icon-builder.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build-mac:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Install latest rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          target: x86_64-apple-darwin
-          default: true
-          override: true
-
-      - name: Build for mac
-        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_darwin
-
-      - name: Create release tag
-        id: tag
-        run: |
-          echo "::set-output name=release_tag::release_$(date +"%Y.%m.%d_%H-%M-%S")"
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
-          files: |
-            target/release/electron-icon-builder_darwin
-        env:
+          # (Required) GitHub token for creating GitHub Releases.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
