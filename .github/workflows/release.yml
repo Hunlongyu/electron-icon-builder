@@ -1,10 +1,9 @@
 name: release-build
 
 on:
-  push: 
+  workflow_dispatch:
+  push:
     branches: [rust]
-  
-  workflow_dispatch: {}
 
 jobs:
   build-linux:
@@ -26,7 +25,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             target/release/electron-icon-builder_amd64
@@ -52,7 +50,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: target/release/electron-icon-builder.exe
         env:
@@ -78,7 +75,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             target/release/electron-icon-builder_darwin
