@@ -11,23 +11,52 @@ on:
       - v[0-9]+.*
 
 jobs:
-  build-win-mac:
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-      name: ${{ matrix.os }}
-      runs-on: ${{ matrix.os }}
+  build-linux:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - uses: taiki-e/create-gh-release-action@v1
         with:
-          # (Optional) Path to changelog.
-          # changelog: CHANGELOG.md
-          # (Optional) Create a draft release.
-          # [default value: false]
           draft: true
-          title: $version
         env:
           # (Required) GitHub token for creating GitHub Releases.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          bin: electron-icon-builder
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-win:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          bin: electron-icon-builder
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          draft: true
+        env:
+          # (Required) GitHub token for creating GitHub Releases.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          bin: electron-icon-builder
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
