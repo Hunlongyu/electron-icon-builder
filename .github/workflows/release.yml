@@ -18,7 +18,6 @@ jobs:
       - uses: taiki-e/create-gh-release-action@v1
         with:
           draft: true
-          include: target/release/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
