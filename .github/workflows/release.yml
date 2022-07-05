@@ -36,7 +36,5 @@ jobs:
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: electron-icon-builder
-          tar: none
-          zip: none
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
