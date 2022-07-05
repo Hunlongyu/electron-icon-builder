@@ -22,14 +22,14 @@ jobs:
           override: true
 
       - name: Build
-        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/PROJECT_NAME_amd64
+        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_amd64
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            target/release/PROJECT_NAME_amd64
+            target/release/electron-icon-builder_amd64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -74,13 +74,13 @@ jobs:
           override: true
 
       - name: Build for mac
-        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/PROJECT_NAME_darwin
+        run: cargo build --all --release && strip target/release/electron-icon-builder && mv target/release/electron-icon-builder target/release/electron-icon-builder_darwin
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            target/release/PROJECT_NAME_darwin
+            target/release/electron-icon-builder_darwin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
