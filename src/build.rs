@@ -9,7 +9,7 @@ fn main() {
   slint_build::compile("src/ui/main.slint").unwrap();
 }
 
-#[cfg(unix)]
+#[cfg(linux)]
 fn main() {
   slint_build::compile("src/ui/main.slint").unwrap();
 }
