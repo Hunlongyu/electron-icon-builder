@@ -7,25 +7,44 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  release:
-    name: release ${{ matrix.target }}
-    runs-on: ubuntu-latest
+  publish:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
+        name: [
+            linux,
+            windows,
+            macos
+        ]
+
         include:
-          - target: x86_64-pc-windows-gnu
-            archive: zip
-          - target: x86_64-unknown-linux-musl
-            archive: tar.gz tar.xz
-          - target: x86_64-apple-darwin
-            archive: zip
+          - name: linux
+            os: ubuntu-latest
+            artifact_name: target/release/electron-icon-builder
+            asset_name: electron-icon-builder-linux
+          - name: windows
+            os: windows-latest
+            artifact_name: target/release/electron-icon-builder.exe
+            asset_name: electron-icon-builder-windows
+          - name: macos
+            os: macos-latest
+            artifact_name: target/release/electron-icon-builder
+            asset_name: electron-icon-builder-macos
+
     steps:
-      - uses: actions/checkout@master
-      - name: Compile and release
-        uses: rust-build/rust-build.action@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          RUSTTARGET: ${{ matrix.target }}
-          ARCHIVE_TYPES: ${{ matrix.archive }}
+    - uses: actions/checkout@v1
+
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+
+    - name: Build
+      run: cargo build --release --locked
+
+    - name: Upload binaries to release
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.asset_name }}
+        path: ${{ matrix.artifact_name }}
