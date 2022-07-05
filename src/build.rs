@@ -11,5 +11,5 @@ fn main() {
 
 #[cfg(unix)]
 fn main() {
-  slint_build::compile("ui/main.slint").unwrap();
+  slint_build::compile("src/ui/main.slint").unwrap();
 }
