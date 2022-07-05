@@ -9,12 +9,7 @@ fn main() {
   slint_build::compile("src/ui/main.slint").unwrap();
 }
 
-#[cfg(linux)]
+#[cfg(unix)]
 fn main() {
-  slint_build::compile("src/ui/main.slint").unwrap();
-}
-
-#[cfg(macos)]
-fn main() {
-  slint_build::compile("src/ui/main.slint").unwrap();
+  slint_build::compile("ui/main.slint").unwrap();
 }
