@@ -59,7 +59,7 @@ fn main() {
             let source = match check_input(input) {
                 Ok(path) => path,
                 Err(_) => {
-                    let str = SharedString::from("PNG file not found, please check and try again");
+                    let str = SharedString::from("PNG file not found or Square image less than 512 in width and height, please check and try again");
                     mainw.set_popupText(str);
                     mainw.invoke_show_popup();
                     return;

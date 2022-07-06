@@ -21,6 +21,11 @@ pub mod utils {
       }
       source_path = input_path;
     };
+
+    let png_file = image::open(&source_path).unwrap().to_rgba8();
+    if png_file.width() != png_file.height() || png_file.width() < 512 || png_file.height() < 512 {
+      return Err(false)
+    }
     return Ok(source_path);
   }
 
