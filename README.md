@@ -1,4 +1,5 @@
 ## Electron icon builder GUI
+build with Rust
 
 <p align="center">
 	<img src="https://forthebadge.com/images/badges/built-with-love.svg">
