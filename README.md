@@ -11,4 +11,4 @@ build with C++ Qt
 * Fast: 30ms
 
 ### ScreenShot
-![electron-icon-builder.png](https://s2.loli.net/2022/09/02/2jbA9I5iXxvgy18.png)
+![image.png](https://s2.loli.net/2022/09/02/6oLZE9hN254XVny.png)

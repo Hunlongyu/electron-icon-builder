@@ -16,6 +16,11 @@
     <height>160</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Electron icon builder</string>
   </property>
@@ -32,6 +37,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -50,6 +56,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -72,6 +79,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -90,6 +98,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -106,6 +115,7 @@
       <widget class="QCheckBox" name="cbFlatten">
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -137,6 +147,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
@@ -155,6 +166,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Cascadia Code</family>
          <pointsize>11</pointsize>
         </font>
        </property>
