@@ -78,14 +78,12 @@ When flatten option is enabled
 ```
 
 # Electron-icon-builder GUI
-![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png)
+| Rust                                                         | C++ Qt                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png) | ![electron-icon-builder.png](https://s2.loli.net/2022/09/02/2jbA9I5iXxvgy18.png) |
+| Size: 3MB                                                    | Size: 10MB                                                   |
+| Time: 400ms                                                  | Time: 30ms                                                   |
+| Without installation                                         | Without installation                                         |
+| [Download](https://github.com/Hunlongyu/electron-icon-builder/releases/tag/v0.1.7) | [Download](https://github.com/Hunlongyu/electron-icon-builder/releases/tag/v0.1.12) |
+| [Source code](https://github.com/Hunlongyu/electron-icon-builder/tree/rust) | [Source code](https://github.com/Hunlongyu/electron-icon-builder/tree/Qt) |
 
-### Feature
-* Small: 3MB
-* Fast: 400ms
-* Cross-Platform
-* Widthout installation
-
-Download: [release](https://github.com/Hunlongyu/eib/releases)
-
-Git: [Branch](https://github.com/Hunlongyu/eib/tree/rust)
