@@ -80,7 +80,7 @@ When flatten option is enabled
 # Electron-icon-builder GUI
 | Rust                                                         | C++ Qt                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png) | ![electron-icon-builder.png](https://s2.loli.net/2022/09/02/2jbA9I5iXxvgy18.png) |
+| ![00.png](https://s2.loli.net/2022/07/05/O7bXzsL5Q1NMPZJ.png) | ![image.png](https://s2.loli.net/2022/09/02/6oLZE9hN254XVny.png) |
 | Size: 3MB                                                    | Size: 10MB                                                   |
 | Time: 400ms                                                  | Time: 30ms                                                   |
 | Without installation                                         | Without installation                                         |
