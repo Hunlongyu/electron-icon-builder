@@ -20,7 +20,7 @@
   "dependencies": {
     "@oclif/core": "^1.20.2",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.1.2",
+    "@oclif/plugin-plugins": "^2.1.6",
     "@silvia-odwyer/photon-node": "^0.3.1",
     "icon-gen": "^3.0.1"
   },
